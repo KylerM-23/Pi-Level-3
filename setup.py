@@ -12,7 +12,10 @@ modules = {
     "Pyaudio Pip Method": "sudo pip3 install pyaudio",
     "Espeak" : "sudo apt install espeak",
     "Pyttsx3": "sudo pip3 install pyttsx3",
-    "Matplotlib": "sudo apt install python3-matplotlib"
+    "Matplotlib": "sudo apt install python3-matplotlib",
+    "Vosk": "sudo pip3 install vosk",
+    "Sounddevice": "sudo pip3 install sounddevice",
+    "Numpy": "sudo pip3 install numpy"
     }
 
 for act, cmd in modules.items():
