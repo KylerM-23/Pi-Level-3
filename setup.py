@@ -1,8 +1,11 @@
 import os, sys
 
+print("If the code stops, enter y in the temrinal.")
+
 os.system("cd /usr/bin && sudo rm python && sudo ln -s python3 python")
 
 success = 0
+failed = []
 
 modules = {
     'Update': "sudo apt-get update",
@@ -24,10 +27,14 @@ for act, cmd in modules.items():
         if os.system(cmd) == 0:
             success += 1
             break
-        
+        if x == 3:
+            failed.append(act)
+            
 if success == len(modules.keys()):
     print("\nInstallation Success.")
 else:
-    print ("\nSome libraries were not installed. Try again.")
+    print ("These modules failed to install. Try running the command in the terminal.")
+    print(failed)
+
 
 
