@@ -1,45 +1,37 @@
 import RPi.GPIO as GPIO
 import time
 
-motorPins = [12, 16, 18, 22]
+motorPins = 
 
-Halfstep = [[0,0,0,1], [0,0,1,1], [0,0,1,0],[0,1,1,0],
-            [0,1,0,0], [1,1,0,0], [1,0,0,0], [1,0,0,1]]
+Halfstep = 
 
-Fullstep = [[0,0,0,1], [0,0,1,0], [0,1,0,0], [1,0,0,0]]
+Fullstep = 
 
 def setup():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(motorPins, GPIO.OUT)
-    GPIO.output(motorPins, GPIO.LOW)
+    #setup the pins
+    #output low
     
 def moveOnePeriod(stepType, direction, ms):
-    if stepType == 'Half':
-        Sequence = Halfstep
-    else:
-        Sequence = Fullstep
-    
+    #set the sequence depending on the stepType
+
     for j in range(len(Sequence)):
         for i in range(len(motorPins)):
-            if direction == 'CW':
-                GPIO.output(motorPins[i], Sequence[j][i])
-            else:
-                GPIO.output(motorPins[i], Sequence[3-j][i])
+            #if the direction is CW
+                #output the sequence
+            #else
+                #output the sequence in the reverse order
             
         if (ms < 3):
             ms = 3
         time.sleep(ms * .001)
         
 def moveSteps(steps, stepType = 'Half', direction = 'CW', ms = 3):
-    for i in range(steps):
-        moveOnePeriod(stepType, direction, ms)
+    #use a for loop to call moveOnePeriod
     
 def loop():
     while True:
-        moveSteps(512, 'Half', 'CW')
-        time.sleep(0.5)
-        moveSteps(512, 'Half', 'CCW')
-        time.sleep(0.5)
+        #rotate the motor cw
+        #rotate the motor ccw
         
 def destroy():
     GPIO.cleanup()
